@@ -1,20 +1,11 @@
-# import gspread
-# from oauth2client.service_account import ServiceAccountCredentials
+import gspread
 
-# # Define the scope of the credentials
-# scope = ["https://spreadsheets.google.com/feeds", "https://www.googleapis.com/auth/drive"]
+gc = gspread.oauth(
+    credentials_filename='Credentials.json'
+)
 
-# # Set up the credentials
-# creds = ServiceAccountCredentials.from_json_keyfile_name("creds.json", scope)
+sh = gc.open("Example spreadsheet")
 
-# # Authenticate with the Google Sheets API
-# client = gspread.authorize(creds)
+print(sh.sheet1.get('B1'))
 
-# # Open the Google Sheets file by its name
-# sheet = client.open("Example Spreadsheet").sheet1
 
-# # Get all values from the sheet
-# data = sheet.get_all_values()
-data = "Hola mundo"
-# Print the data
-print(data)
