@@ -1,2 +1,3 @@
 gspread
 pandas
+psycopg2
