@@ -76,7 +76,7 @@ def create_database_table(conn):
     conn.commit()
     cur.close()
 
-def populate_database_table(conn, df):
+def populate_database_table(conn, df,tipo):
     cur = conn.cursor()
 
     for _, row in df.iterrows():
@@ -84,12 +84,12 @@ def populate_database_table(conn, df):
             cur.execute("""
                 INSERT INTO inventario (Tipo, Gama, Articulo_Descripcion, Foto, Costo, Piezas, Total)
                 VALUES (%s, %s, %s, %s, %s, %s, %s);
-            """, ("", row['Gama'], row['Articulo_Descripcion'], row['Foto'], row['Costo'], row['Piezas'], row['Total']))
+            """, (tipo, row['Gama'], row['Articulo_Descripcion'], row['Foto'], row['Costo'], row['Piezas'], row['Total']))
         else:
             cur.execute("""
                 INSERT INTO inventario (Tipo, Gama, Articulo_Descripcion, Foto, Costo, Tarimas, Total)
                 VALUES (%s, %s, %s, %s, %s, %s, %s);
-            """, ("", row['Gama'], row['Articulo_Descripcion'], row['Foto'], row['Costo'], row['Tarimas'], row['Total']))
+            """, (tipo, row['Gama'], row['Articulo_Descripcion'], row['Foto'], row['Costo'], row['Tarimas'], row['Total']))
 
     conn.commit()
     cur.close()
@@ -127,11 +127,13 @@ def main():
 
     #Llenamos la tabla con los datos del Google Sheet
     for df in dfs:
-        populate_database_table(conn, dfs[df])
+        #add name of data frame to third argument
+
+        populate_database_table(conn, dfs[df],df)
     
     #Leemos la tabla de la base de datos
     df = read_database_table(conn)
-    print(df)
+    print(df.head())
 
 if __name__ == '__main__':
     main()
