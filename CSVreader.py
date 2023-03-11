@@ -133,7 +133,7 @@ def main():
     
     #Leemos la tabla de la base de datos
     df = read_database_table(conn)
-    print(df.head())
+    print(df)
 
 if __name__ == '__main__':
     main()
