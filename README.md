@@ -1,5 +1,5 @@
 # Proyecto de transformacion digital para la empresa Autentico Corajillo
-- Desarrollo de prototipo de API que se lee un CSV y lo despliega la informacion en un dashboard ademas de almacenarla en una base de datos.
+- Desarrollo de prototipo de API que  lee un CSV y  despliega la informacion en un dashboard ademas de almacenar la informacion en una base de datos.
 
 
 Equipo 10:
